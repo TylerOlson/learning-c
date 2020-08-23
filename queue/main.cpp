@@ -19,7 +19,7 @@ int main() {
     std::cout << myQueue; // This should print out exactly "lo\n" without the quotes
 
     myQueue.Enqueue('n');
-    
+
     std::cout << myQueue; // This should print out exactly "lon\n" without the quotes
 
     Queue myQueue2;
@@ -27,7 +27,7 @@ int main() {
     myQueue2.Enqueue('o');
     myQueue2.Enqueue('n');
 
-    if(myQueue == myQueue2) {
+    if (myQueue == myQueue2) {
         std::cout << "This should print" << std::endl;
     }
 
@@ -39,7 +39,7 @@ int main() {
     myQueue.Dequeue();
     myQueue.Dequeue();
 
-    if(myQueue == myQueue2) {
+    if (myQueue == myQueue2) {
         std::cout << "This should not print" << std::endl;
     }
 

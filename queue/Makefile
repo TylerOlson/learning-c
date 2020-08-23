@@ -3,4 +3,4 @@ all:
 	g++ main.cpp queue.o -o main
 
 clean:
-	rm queue.o main
+	rm queue.o main *.exe
