@@ -14,11 +14,11 @@ int main() {
     myQueue.Dequeue();
     myQueue.Dequeue();
 
-    std::cout << myQueue; // This should print out exactly "he\n" without the quotes
+    std::cout << myQueue; // This should print out exactly "lo\n" without the quotes
 
     myQueue.Enqueue('n');
 
-    std::cout << myQueue; // This should print out exactly "hen\n" without the quotes
+    std::cout << myQueue; // This should print out exactly "lon\n" without the quotes
 
     Queue myQueue2;
     myQueue2.Enqueue('l');

@@ -1,6 +1,6 @@
 all:
-	g++ -c linkedqueue.cpp -o linkedqueue.o
-	g++ main.cpp linkedqueue.o -o main
+	g++ -g -c linkedqueue.cpp -o linkedqueue.o
+	g++ -g main.cpp linkedqueue.o -o main
 
 clean:
-	rm linkedqueue.o main *.exe
+	rm linkedqueue.o main
