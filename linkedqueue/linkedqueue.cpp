@@ -5,10 +5,7 @@ Queue::Queue() {
 }
 
 Queue::~Queue() {
-    if (front == nullptr) {
-        return;
-    }
-
+    if (front == nullptr) return;
     if (front->next == nullptr) {
         delete[] front;
         front = nullptr;
@@ -18,12 +15,14 @@ Queue::~Queue() {
     QNode *next = front;
 
     while (checker != nullptr) {
-        next = checker->next;
-        delete[] checker;
-        checker = next;
+        next = checker->next; //point to next
+        delete[] checker;     //delete old
+        checker = next;       //set back to next
     }
 
-    front = nullptr; // probably best to recursivly destory all objects in list
+    // set all back to nullptr
+    next = nullptr;
+    front = nullptr;
 }
 
 std::ostream &operator<<(std::ostream &os, const Queue &q) {
@@ -36,18 +35,14 @@ std::ostream &operator<<(std::ostream &os, const Queue &q) {
 
     os << std::endl;
     return os;
-} // overloaded << operator
+}
 
 bool operator==(const Queue &q1, const Queue &q2) {
-    if (&q1 == &q2) { // if addresses are the same
-        return true;
-    }
+    if (&q1 == &q2) return true; // if addresses are the same
 
     if (q1.front == nullptr) {
-        if (q2.front == nullptr) { // both are null, equal
-            return true;
-        }
-        return false; //one is null, inequal
+        if (q2.front == nullptr) return true; // both are null, equal
+        return false;                         //one is null, inequal
     }
 
     QNode *checker1 = q1.front;
@@ -55,17 +50,15 @@ bool operator==(const Queue &q1, const Queue &q2) {
 
     while (checker1->data == checker2->data) { // while each segment is true, go to next one and check
         if (checker1->next == nullptr) {
-            if (checker2->next == nullptr) { // both are null, escape and is equal
-                return true;
-            }
-            return false; // only one is null, escape and is inequal
+            if (checker2->next == nullptr) return true; // both are null, escape and is equal
+            return false;                               // only one is null, escape and is inequal
         }
         checker1 = checker1->next;
         checker2 = checker2->next;
     }
 
     return false;
-} // overloaded == operator (IsEqual())
+}
 
 void Queue::Enqueue(char c) {
     QNode *node = new QNode; // create new node
@@ -84,13 +77,12 @@ void Queue::Enqueue(char c) {
     }
 
     checker->next = node; // once node is null, set it to node
-} // inserts a character at the end of the queue
+}
 
 void Queue::Dequeue() {
     QNode *currentFront = front; // pointer to current front
-    if (front == nullptr) {
-        return;
-    }
+    if (front == nullptr) return;
+
     front = front->next;   //shift front to next character
     delete[] currentFront; // delete old front
-} // removes a character from the front of the queue
+}
