@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -18,7 +19,13 @@ std::vector<std::string> parseConfig(std::ifstream &config) {
     if (config.is_open()) {
         std::string line;
         while (getline(config, line)) {
-            values.push_back(line.substr(0, line.find(":")));
+            line.erase(std::remove_if(line.begin(), line.end(), isspace), line.end());
+            std::stringstream linestream(line);
+            while (linestream.good()) {
+                std::string substring;
+                getline(linestream, substring, ':');
+                values.push_back(substring);
+            }
         }
     }
 
@@ -30,7 +37,8 @@ int getVariable(std::string label, std::ifstream &config, std::vector<std::strin
     int variable;
     if (element != list.end()) {
         int index = std::distance(list.begin(), element);
-        variable = std::stoi(list[index + 1]);
+        std::string nextelement = list[index + 1];
+        variable = std::stoi(nextelement);
     }
 
     return variable;
@@ -38,17 +46,24 @@ int getVariable(std::string label, std::ifstream &config, std::vector<std::strin
 
 int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
-        std::cout << argv[i] << i << " ";
+        std::cout << "args: " << argv[i] << i << " ";
     }
-
     std::cout << std::endl;
+
     if (argc > 1) {
         std::ifstream config;
         loadFile(argv[1], config); //path, config stream
         std::vector<std::string> parsedList = parseConfig(config);
+        std::cout << "parsed size: " << parsedList.size() << std::endl;
+        for (int i = 0; i < parsedList.size(); i++) {
+            std::cout << parsedList[i] << std::endl;
+        }
 
-        int test = getVariable("value", config, parsedList);
-        std::cout << test << std::endl;
+        int value = getVariable("value", config, parsedList);
+        std::cout << "value: " << value << std::endl;
+        int another = getVariable("another", config, parsedList);
+        std::cout << "another: " << another << std::endl;
+
         closeFile(config);
     }
     return 0;
