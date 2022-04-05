@@ -15,9 +15,9 @@ Queue::~Queue() {
     QNode *next = front;
 
     while (checker != nullptr) {
-        next = checker->next; //point to next
-        delete[] checker;     //delete old
-        checker = next;       //set back to next
+        next = checker->next; // point to next
+        delete[] checker;     // delete old
+        checker = next;       // set back to next
     }
 
     // set all back to nullptr
@@ -42,7 +42,7 @@ bool operator==(const Queue &q1, const Queue &q2) {
 
     if (q1.front == nullptr) {
         if (q2.front == nullptr) return true; // both are null, equal
-        return false;                         //one is null, inequal
+        return false;                         // one is null, inequal
     }
 
     QNode *checker1 = q1.front;
@@ -83,6 +83,6 @@ void Queue::Dequeue() {
     QNode *currentFront = front; // pointer to current front
     if (front == nullptr) return;
 
-    front = front->next;   //shift front to next character
+    front = front->next;   // shift front to next character
     delete[] currentFront; // delete old front
 }

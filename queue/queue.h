@@ -1,3 +1,6 @@
+#ifndef LINKEDQUEUE
+#define LINKEDQUEUE
+
 #include <iostream>
 
 class Queue {
@@ -14,3 +17,5 @@ public:
     void Dequeue();                                                    // removes a character from the front of the queue
     int Size();                                                        // returns the current size of the queue
 };
+
+#endif

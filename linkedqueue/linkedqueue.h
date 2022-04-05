@@ -1,3 +1,5 @@
+#ifndef LINKEDQUEUE
+#define LINKEDQUEUE
 #include <iostream>
 
 struct QNode {
@@ -17,3 +19,4 @@ public:
     void Enqueue(char c);                                              // inserts a character at the end of the queue
     void Dequeue();                                                    // removes a character from the front of the queue
 };
+#endif

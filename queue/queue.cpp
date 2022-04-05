@@ -42,8 +42,8 @@ void Queue::Enqueue(char c) {
     }
 
     newdata[size] = c;
-    delete[] data;  //deletes old data
-    data = newdata; //sets data pointer to new data
+    delete[] data;  // deletes old data
+    data = newdata; // sets data pointer to new data
     size++;
 }
 
